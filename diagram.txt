@@ -1,0 +1,57 @@
+@startuml
+class Product {
++ price: float
++ name: str
+
++ __init__(self, name : str, price : float): None
++ set_name(self, name : str): None 
++ set_price(self, price : float): None
++ get_name(self): str
++ get_price(self): float
+}
+
+abstract class Server {
+{static} n_max_returned_entries: int
+{abstract} __init__(self, products : List[Product] = []): None
+{abstract} add_product(self, product : Product): None
+{abstract} get_entries(self, n_letters : int): List[Product]
+}
+
+class ListServer {
+
++ products: List[Product]
+
++ __init__(self, products : List[Product] = []): None
++ add_product(self, product : Product): None
++ get_entries(self, n_letters : int = 1): List[Product]
+}
+
+class MapServer {
++ products: Dict[str, Product]
+
++ __init__(self, products : List[Product] = []): None
++ add_product(self, product : Product): None
++ get_entries(self, n_letters : int): List[Product]
+}
+
+class Client {
++ server: Server
+
++ __init__(self, server : Server): None
++ get_total_price(self, n_letters: Optional[int]): Optional[float]
+}
+
+class TooManyProductsFoundError {
+
+}
+
+Server <|-- ListServer
+Server <|-- MapServer
+Client o-- Server
+ListServer *-- Product
+MapServer *-- Product
+Product::set_price ..> ValueError : <<throws>>
+Product::set_name ..> ValueError: <<throws>>
+MapServer::get_entries ..> TooManyProductsFoundError: <<throws>>
+ListServer::get_entries ..> TooManyProductsFoundError: <<throws>>
+@enduml
