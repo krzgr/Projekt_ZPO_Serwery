@@ -45,8 +45,13 @@ class TooManyProductsFoundError {
 
 }
 
+class Exception {
+
+}
+
 Server <|-- ListServer
 Server <|-- MapServer
+Exception <|-- TooManyProductsFoundError
 Client o-- Server
 ListServer *-- Product
 MapServer *-- Product
