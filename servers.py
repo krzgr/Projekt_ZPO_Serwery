@@ -83,7 +83,7 @@ class MapServer(Server):
     def add_product(self, product: Product) -> None:
         self.products[product.get_name()] = product
     
-    def get_entries(self, n_letters: int) -> List[Product]:
+    def get_entries(self, n_letters: int = 1) -> List[Product]:
         if isinstance(n_letters, int) and n_letters > 0:
             pattern = "^[a-zA-Z]{" + str(n_letters) + "}\d{2,3}$"
             result = [self.products[key] for key in self.products.keys() if re.fullmatch(pattern, key)]
@@ -99,7 +99,7 @@ class Client:
         
     def get_total_price(self, n_letters: Optional[int]) -> Optional[float]:
         try:
-            tmp = self.server.get_entries(n_letters)
+            tmp = self.server.get_entries(n_letters) if isinstance(n_letters, int) else self.server.get_entries()
             if len(tmp) == 0:
                 return None
             result = 0
