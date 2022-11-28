@@ -97,7 +97,7 @@ class Client:
     def __init__(self, server: Server) -> None:
         self.server = server
         
-    def get_total_price(self, n_letters: Optional[int]) -> Optional[float]:
+    def get_total_price(self, n_letters: Optional[int] = None) -> Optional[float]:
         try:
             tmp = self.server.get_entries(n_letters) if isinstance(n_letters, int) else self.server.get_entries()
             if len(tmp) == 0:
