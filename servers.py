@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# 3: Wyderka (410433), Grund (412574), Ziemba (411235)
+
 from typing import Optional, List
 from abc import ABC, abstractmethod
 from copy import deepcopy
@@ -48,15 +50,15 @@ class Server(ABC):
 
     @abstractmethod
     def __init__(self, products: List[Product] = []) -> None:
-        pass
+        raise NotImplementedError()
     
     @abstractmethod
     def add_product(self, product: Product) -> None:
-        pass
+        raise NotImplementedError()
 
     @abstractmethod
     def get_entries(self, n_letters: int) -> List[Product]:
-        pass
+        raise NotImplementedError()
 
 
 class ListServer(Server):
@@ -99,7 +101,10 @@ class Client:
         
     def get_total_price(self, n_letters: Optional[int] = None) -> Optional[float]:
         try:
-            tmp = self.server.get_entries(n_letters) if isinstance(n_letters, int) else self.server.get_entries()
+            if isinstance(n_letters, int):
+                tmp = self.server.get_entries(n_letters)
+            else:
+                raise ValueError()
             if len(tmp) == 0:
                 return None
             result = 0
@@ -108,3 +113,5 @@ class Client:
             return result
         except Exception as e:
             return None
+
+# 3: Wyderka (410433), Grund (412574), Ziemba (411235)

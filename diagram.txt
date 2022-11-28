@@ -1,3 +1,5 @@
+' 3: Wyderka (410433), Grund (412574), Ziemba (411235)
+
 @startuml
 class Product {
 + price: float
@@ -60,3 +62,5 @@ Product::set_name ..> ValueError: <<throws>>
 MapServer::get_entries ..> TooManyProductsFoundError: <<throws>>
 ListServer::get_entries ..> TooManyProductsFoundError: <<throws>>
 @enduml
+
+' 3: Wyderka (410433), Grund (412574), Ziemba (411235)
