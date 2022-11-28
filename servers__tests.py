@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# 3: Wyderka (410433), Grund (412574), Ziemba (411235)
+
 import unittest
 
 from servers import ListServer, Product, Client, MapServer, TooManyProductsFoundError

@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 # 3: Wyderka (410433), Grund (412574), Ziemba (411235)
 
 from typing import Optional, List
@@ -101,10 +100,14 @@ class Client:
         
     def get_total_price(self, n_letters: Optional[int] = None) -> Optional[float]:
         try:
+            tmp = []
             if isinstance(n_letters, int):
                 tmp = self.server.get_entries(n_letters)
+            elif isinstance(n_letters, None):
+                tmp = self.server.get_entries()
             else:
                 raise ValueError()
+            
             if len(tmp) == 0:
                 return None
             result = 0
@@ -113,5 +116,3 @@ class Client:
             return result
         except Exception as e:
             return None
-
-# 3: Wyderka (410433), Grund (412574), Ziemba (411235)
